@@ -7,8 +7,9 @@ import java.util.Scanner;
 public class Calculator {
     static String val1;
     static String val2;
-    static DecimalFormat df = new DecimalFormat("#.##");
 
+    static DecimalFormat df = new DecimalFormat("#.##");
+    static Scanner scanner = new Scanner(System.in);
 
     static void division(String val1, String val2){
         double val1double = NumberUtils.toDouble(val1);
@@ -25,8 +26,6 @@ public class Calculator {
 
 
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-
         System.out.println("Please Enter value 1:");
         val1 = scanner.nextLine();
         System.out.println("Please Enter value 2:");
