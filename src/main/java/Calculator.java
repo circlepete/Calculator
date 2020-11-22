@@ -1,17 +1,23 @@
 import org.apache.commons.lang.math.NumberUtils;
 
+import java.text.DecimalFormat;
 import java.util.Scanner;
 
 
 public class Calculator {
     static String val1;
     static String val2;
+    static DecimalFormat df = new DecimalFormat("#.##");
+
 
     static void division(String val1, String val2){
-        double val1Double = NumberUtils.toDouble(val1);
-        double val2Double = NumberUtils.toDouble(val2);
-        if (val2Double != 0){
-            System.out.println(val1Double / val2Double);
+        double val1double = NumberUtils.toDouble(val1);
+        double val2double = NumberUtils.toDouble(val2);
+
+        if (val2double != 0){
+            System.out.println("Full Result is: " + val1double / val2double);
+            System.out.println("Rounded Result is: " + df.format(val1double / val2double));
+
         } else {
             System.out.println("0 not allowed for Division");
         }
