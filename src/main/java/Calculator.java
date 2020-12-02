@@ -7,48 +7,29 @@ import java.util.regex.Pattern;
 
 
 public class Calculator {
+    static double val1double;
+    static double val2double;
+    static String operator;
     static String userInput;
-    static String val1;
-    static String val2;
 
     static DecimalFormat df = new DecimalFormat("#.##");
     static Scanner scanner = new Scanner(System.in);
 
-
-
-
-    static void division(String val1, String val2){
-        double val1double = NumberUtils.toDouble(val1);
-        double val2double = NumberUtils.toDouble(val2);
-
-//        if (val2double != 0){
-//            System.out.println("Full Result is: " + val1double / val2double);
-//            System.out.println("Rounded Result is: " + df.format(val1double / val2double));
-//
-//        } else {
-//            System.out.println("0 not allowed for Division");
-//        }
-    }
-
-
     public static void main(String[] args) {
-        double val1double;
-        double val2double;
-        String operator;
 
         System.out.println("Math please:");
-        userInput = scanner.nextLine().trim().replace("," , ".");;
-//        String userInput = "4,1235*1,1345".trim().replace(",",".");
+        userInput = scanner.nextLine()
+                .trim()
+                .replace(" " , "")
+                .replace("," , ".");
 
-
-        Pattern pattern = Pattern.compile("(\\d+\\.\\d+?)(\\+|\\-|\\/|\\*)(\\d+\\.\\d+)");
+        Pattern pattern = Pattern.compile("([-+]?\\d*\\.?\\d+)([*|/+\\-])([-+]?\\d*\\.?\\d+)");
         Matcher matcher = pattern.matcher(userInput);
 
         if(matcher.find()) {
             val1double = NumberUtils.toDouble(matcher.group(1));
             val2double = NumberUtils.toDouble(matcher.group(3));
             operator = matcher.group(2);
-
 
             switch (operator) {
                 case "+":
@@ -60,8 +41,12 @@ public class Calculator {
                     System.out.println(df.format(val1double - val2double));
                     break;
                 case "/":
-                    System.out.println("Result of Division: ");
-                    System.out.println(df.format(val1double / val2double));
+                    if (val2double != 0){
+                        System.out.println("Result of Division: ");
+                        System.out.println(df.format(val1double / val2double));
+                    } else {
+                        System.out.println("0 not allowed for Division");
+                    }
                     break;
                 case "*":
                     System.out.println("Result of Multiplication: ");
@@ -71,6 +56,8 @@ public class Calculator {
                     System.out.println("No operation possible");
                     break;
             }
+        } else {
+            System.out.println("No operation possible");
         }
     }
 }
